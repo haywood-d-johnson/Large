@@ -1,3 +1,65 @@
 ul {
     list-style-type: none;
 }
+
+a {
+    text-decoration: none;
+}
+
+.navbar-container {
+    display: flex;
+    padding: 1rem;
+    margin-top: 0.5rem;
+}
+
+.navbar-left {
+    width: 100%;
+}
+
+.navbar-left a {
+    margin-left: 0.5rem;
+}
+
+.navbar-right {
+    width: 25%;
+    align-items: flex-end;
+}
+
+.navbar-right a {
+    margin-left: 1rem;
+}
+
+.navbar-signup_button {
+    border: 2px solid black;
+    padding: 0.5rem;
+}
+
+.navbar-user_dropdown {
+    width: 25%;
+}
+
+.navbar-menu_button {
+    width: 100%;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+    width: 100%;
+    height: 5px;
+    background-color: #333;
+    margin: 5px 0;
+}
+
+.profile-dropdown {
+    padding: 0;
+    width: 100%;
+}
+
+.profile-dropdown button {
+    width: 10%;
+}
