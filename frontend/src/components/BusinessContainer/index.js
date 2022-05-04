@@ -1,6 +1,6 @@
 import "./BusinessContainer.css";
 
-const BusinessContainer = business => {
+const BusinessContainer = ({ business }) => {
     return (
         <div className="business_container">
             <h3 className="business_name">

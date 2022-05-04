@@ -20,10 +20,9 @@ const BusinessMain = () => {
             {business &&
                 business.map(b => {
                     return (
-                        <BusinessContainer
-                            key={business.id}
-                            business={business}
-                        />
+                        <>
+                            <BusinessContainer key={b.id} business={b} />
+                        </>
                     );
                 })}
         </>
