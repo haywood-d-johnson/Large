@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, Route, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { getAllBusinesses } from "../../store/business";
+import BusinessContainer from "../BusinessContainer";
 
 const BusinessMain = () => {
     const dispatch = useDispatch();
@@ -19,9 +20,10 @@ const BusinessMain = () => {
             {business &&
                 business.map(b => {
                     return (
-                        <>
-                            <div>{b.title}</div>
-                        </>
+                        <BusinessContainer
+                            key={business.id}
+                            business={business}
+                        />
                     );
                 })}
         </>
