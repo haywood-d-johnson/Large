@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+
 import ProfileButton from "./ProfileButton";
 
 import "./Navigation.css";
@@ -26,7 +27,7 @@ function Navigation({ isLoaded }) {
         <div className="navbar-container">
             <div className="navbar-left">
                 <NavLink exact to="/">
-                    Home
+                    What's the 411?
                 </NavLink>
             </div>
             <div className="navbar-right">{isLoaded && sessionLinks}</div>

@@ -10,14 +10,34 @@ a {
     display: flex;
     padding: 1rem;
     margin-top: 0.5rem;
+    width: 100%;
+    border-bottom: 0.1px solid var(--athens-grey);
 }
 
 .navbar-left {
     width: 100%;
+    display: flex;
+    flex-direction: row;
 }
 
 .navbar-left a {
-    margin-left: 0.5rem;
+    margin-left: 3rem;
+    text-transform: uppercase;
+    font-size: medium;
+}
+
+.navbar_links {
+    margin-left: 3rem;
+    display: flex;
+    align-items: center;
+}
+
+.navbar_github {
+    margin-left: 3rem;
+}
+
+.navbar_site_tip {
+    color: var(--hurricane);
 }
 
 .navbar-right {
@@ -46,20 +66,27 @@ a {
     background: none;
 }
 
-.bar1,
-.bar2,
-.bar3 {
-    width: 100%;
-    height: 5px;
-    background-color: #333;
-    margin: 5px 0;
-}
-
 .profile-dropdown {
-    padding: 0;
-    width: 100%;
+    padding: 0 1rem;
+    position: absolute;
+    border: 0.1px solid var(--athens-grey);
+    right: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .profile-dropdown button {
-    width: 10%;
+    text-transform: uppercase;
+    background-color: white;
+    border: 1px solid var(--midnight);
+    padding: 0.5rem 2rem;
+    color: var(--midnight);
+    font-size: small;
+    cursor: grab;
+}
+
+.profile-dropdown button:hover {
+    color: white;
+    background-color: var(--midnight);
 }

@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChessKing, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 import "./Navigation.css";
 
@@ -33,9 +38,7 @@ function ProfileButton({ user }) {
     return (
         <div className="navbar-user_dropdown">
             <button onClick={openMenu} className="navbar-menu_button">
-                <div className="bar1"></div>
-                <div className="bar2"></div>
-                <div className="bar3"></div>
+                <FontAwesomeIcon icon={faChessKing} shake />
             </button>
             {showMenu && (
                 <ul className="profile-dropdown">
@@ -43,6 +46,38 @@ function ProfileButton({ user }) {
                     <li>{user.email}</li>
                     <li>
                         <button onClick={logout}>Log Out</button>
+                    </li>
+                    <li>
+                        <div className="navbar_links">
+                            <div className="navbar_site">
+                                <NavLink
+                                    to={{
+                                        pathname:
+                                            "https://hdjohnson-dev.online/",
+                                    }}
+                                    target="_blank"
+                                >
+                                    <FontAwesomeIcon icon={faChessKing} shake />
+                                    <div className="navbar_site_tip">
+                                        View My Site
+                                    </div>
+                                </NavLink>
+                            </div>
+                            <div className="navbar_github">
+                                <NavLink
+                                    to={{
+                                        pathname:
+                                            "https://github.com/haywood-d-johnson",
+                                    }}
+                                    target="_blank"
+                                >
+                                    <FontAwesomeIcon icon={faGithub} shake />
+                                    <div className="navbar_site_tip">
+                                        View My Github
+                                    </div>
+                                </NavLink>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             )}

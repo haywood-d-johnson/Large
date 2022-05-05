@@ -1,9 +1,18 @@
 /* TODO Add site wide styles */
 
+:root {
+    --midnight: #001c40;
+    --hurricane: #877575;
+    --athens-grey: #efeff0;
+}
+
 * {
-    margin: 0 auto;
-    width: 1000px;
-    font-family: "Source Sans Pro", sans-serif;
+    font-family: "Poppins", sans-serif;
     color: black;
     font-size: 1rem;
+}
+
+body {
+    margin: 0 auto;
+    /* width: 1000px; */
 }

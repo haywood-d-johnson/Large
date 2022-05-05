@@ -1,0 +1,42 @@
+.business_container {
+    max-width: 600px;
+    margin-bottom: 1.5rem;
+    /* width: 50%; */
+    margin-left: 20rem;
+}
+
+.business_name {
+    color: var(--midnight);
+    margin-bottom: 0.5rem;
+    border-bottom: 0.1px solid var(--athens-grey);
+    font-size: 1.5rem;
+}
+
+.business_address,
+.business_location {
+    color: var(--hurricane);
+    font-size: small;
+}
+
+.business_location {
+    margin-bottom: 0.5rem;
+}
+
+.business_description {
+    margin-bottom: 0.5rem;
+}
+
+.business_button {
+    text-transform: uppercase;
+    background-color: white;
+    border: 1px solid var(--midnight);
+    padding: 0.5rem 2rem;
+    color: var(--midnight);
+    font-size: small;
+    cursor: grab;
+}
+
+.business_button:hover {
+    color: white;
+    background-color: var(--midnight);
+}
