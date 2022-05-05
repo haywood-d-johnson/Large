@@ -1,7 +1,9 @@
 /* TODO Add site wide styles */
 
 :root {
+    --midnight: #001c40;
     --hurricane: #877575;
+    --athens-grey: #efeff0;
 }
 
 * {
@@ -12,5 +14,5 @@
 
 body {
     margin: 0 auto;
-    width: 1000px;
+    /* width: 1000px; */
 }

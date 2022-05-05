@@ -1,11 +1,15 @@
 .business_container {
-    margin-bottom: 1rem;
-    width: 50%;
+    max-width: 600px;
+    margin-bottom: 1.5rem;
+    /* width: 50%; */
+    margin-left: 20rem;
 }
 
 .business_name {
-    color: red;
+    color: var(--midnight);
     margin-bottom: 0.5rem;
+    border-bottom: 0.1px solid var(--athens-grey);
+    font-size: 1.5rem;
 }
 
 .business_address,
@@ -25,8 +29,14 @@
 .business_button {
     text-transform: uppercase;
     background-color: white;
-    border: 1px solid red;
+    border: 1px solid var(--midnight);
     padding: 0.5rem 2rem;
-    color: red;
+    color: var(--midnight);
     font-size: small;
+    cursor: grab;
+}
+
+.business_button:hover {
+    color: white;
+    background-color: var(--midnight);
 }

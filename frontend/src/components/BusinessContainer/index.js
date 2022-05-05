@@ -3,9 +3,9 @@ import "./BusinessContainer.css";
 const BusinessContainer = ({ business }) => {
     return (
         <div className="business_container">
-            <h3 className="business_name">
+            <h1 className="business_name">
                 {business.id}. {business.title}
-            </h3>
+            </h1>
             <div className="business_address">{business.address}</div>
             <div className="business_location">
                 {business.city}, {business.state}, {business.zip}
