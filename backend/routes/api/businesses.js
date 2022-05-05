@@ -17,4 +17,16 @@ router.get(
     })
 );
 
+router.get(
+    "/:id(\\d+)",
+    asyncHandler(async (req, res) => {
+        const id = parseInt(req.params.id, 10);
+        const business = await Business.findByPk(id);
+
+        return res.json({
+            business,
+        });
+    })
+);
+
 module.exports = router;

@@ -1,0 +1,26 @@
+.business-detail_container {}
+
+.business-detail_title {}
+
+.business-detail_description {}
+
+.business-detail_location {}
+
+.business-detail_address {}
+
+.business-detail_csz {}
+
+.business-detail_review-button {
+    text-transform: uppercase;
+    background-color: white;
+    border: 1px solid var(--midnight);
+    padding: 0.5rem 2rem;
+    color: var(--midnight);
+    font-size: small;
+    cursor: grab;
+}
+
+.business-detail_review-button:hover {
+    color: white;
+    background-color: var(--midnight);
+}

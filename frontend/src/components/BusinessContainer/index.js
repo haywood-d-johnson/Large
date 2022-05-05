@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 import "./BusinessContainer.css";
 
 const BusinessContainer = ({ business }) => {
@@ -11,7 +13,9 @@ const BusinessContainer = ({ business }) => {
                 {business.city}, {business.state}, {business.zip}
             </div>
             <div className="business_description">{business.description}</div>
-            <button className="business_button">View this Business</button>
+            <NavLink key={business.id} to={`/business/${business.id}`}>
+                <button className="business_button">View this Business</button>
+            </NavLink>
         </div>
     );
 };

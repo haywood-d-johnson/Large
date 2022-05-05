@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import BusinessMain from "./components/BusinessMain";
+import BusinessDetail from "./components/BusinessDetail";
 
 function App() {
     const dispatch = useDispatch();
@@ -29,6 +30,9 @@ function App() {
                     </Route>
                     <Route exact path="/">
                         <BusinessMain />
+                    </Route>
+                    <Route exact path="/business/:businessId">
+                        <BusinessDetail />
                     </Route>
                 </Switch>
             )}
