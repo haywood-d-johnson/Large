@@ -23,10 +23,6 @@ const removeBusiness = businessId => {
 
 const initialState = { list: [] };
 
-// sorts business alphabetically
-// const sortBusinessAlpha = list =>
-//     list.sort((a, b) => a.title - b.title).map(b => b.id);
-
 export const getAllBusinesses = () => async dispatch => {
     const res = await fetch(`/api/business`);
 
@@ -41,6 +37,57 @@ export const getOneBusiness = id => async dispatch => {
     if (res.ok) {
         const { business } = await res.json();
         dispatch(setBusiness(business));
+    }
+};
+
+export const createBusiness = business => async dispatch => {
+    const { userId, title, description, address, city, state, zip } = business;
+    try {
+        const res = await csrfFetch("/api/business", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                userId,
+                title,
+                description,
+                address,
+                city,
+                state,
+                zip,
+            }),
+        });
+        if (res.ok) {
+            const data = await res.json();
+
+            dispatch(setBusiness(data.business));
+            return true;
+        }
+    } catch (error) {
+        return false;
+    }
+};
+
+export const editBusiness = business => async dispatch => {
+    const { userId, title, description, address, city, state, zip } = business;
+    const res = await csrfFetch("/api/business", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            userId,
+            title,
+            description,
+            address,
+            city,
+            state,
+            zip,
+        }),
+    });
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(setBusiness(data.business));
+        return res;
+    } else {
+        console.error(res);
     }
 };
 
@@ -67,6 +114,10 @@ const businessReducer = (state = initialState, action) => {
                     },
                 };
             }
+        case REMOVE_BUSINESS:
+            setState = Object.assign({}, state);
+            setState.business = null;
+            return setState;
         case GET_ALL:
             const bList = {};
             action.list.businesses.forEach(i => {

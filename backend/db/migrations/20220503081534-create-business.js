@@ -38,11 +38,11 @@ module.exports = {
                 type: Sequelize.STRING(10),
             },
             lat: {
-                allowNull: false,
+                // allowNull: pulling from address only works with Google API. not free
                 type: Sequelize.DECIMAL,
             },
             lng: {
-                allowNull: false,
+                // allowNull: pulling from address only works with Google API. not free
                 type: Sequelize.DECIMAL,
             },
             createdAt: {

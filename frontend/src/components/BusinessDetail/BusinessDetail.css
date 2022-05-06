@@ -10,7 +10,8 @@
 
 .business-detail_csz {}
 
-.business-detail_review-button {
+.business-detail_review-button,
+.business-detail_edit-button {
     text-transform: uppercase;
     background-color: white;
     border: 1px solid var(--midnight);
@@ -20,7 +21,12 @@
     cursor: grab;
 }
 
-.business-detail_review-button:hover {
+.business-detail_review-button {
+    margin-left: 0.5rem;
+}
+
+.business-detail_review-button:hover,
+.business-detail_edit-button:hover {
     color: white;
     background-color: var(--midnight);
 }

@@ -41,17 +41,32 @@ a {
 }
 
 .navbar-right {
-    width: 25%;
-    align-items: flex-end;
+    display: flex;
+    width: 35%;
+    /* align-items: flex-end; */
 }
 
 .navbar-right a {
     margin-left: 1rem;
 }
 
+.navbar-login_button {
+    text-transform: uppercase;
+}
+
 .navbar-signup_button {
-    border: 2px solid black;
-    padding: 0.5rem;
+    text-transform: uppercase;
+    background-color: white;
+    border: 1px solid var(--midnight);
+    padding: 0.5rem 2rem;
+    color: var(--midnight);
+    font-size: small;
+    cursor: grab;
+}
+
+.navbar-signup_button:hover {
+    color: white;
+    background-color: var(--midnight);
 }
 
 .navbar-user_dropdown {
@@ -64,6 +79,21 @@ a {
     cursor: pointer;
     border: none;
     background: none;
+}
+
+.navbar-register_button {
+    text-transform: uppercase;
+    background-color: white;
+    border: 1px solid var(--midnight);
+    padding: 0.5rem 2rem;
+    color: var(--midnight);
+    font-size: small;
+    cursor: grab;
+}
+
+.navbar-register_button:hover {
+    color: white;
+    background-color: var(--midnight);
 }
 
 .profile-dropdown {
