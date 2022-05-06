@@ -53,6 +53,7 @@ router.post(
             },
         });
 
+        // the only constant
         if (check) {
             const err = new Error("Update failed");
             err.status = 401;
@@ -91,24 +92,8 @@ router.patch(
             business.state = req.body.state;
             business.zip = req.body.zip;
 
-            // the only constant
-            const check = await Business.findOne({
-                where: {
-                    address: req.body.address,
-                },
-            });
-            if (check) {
-                const err = new Error("Update failed");
-                err.status = 401;
-                err.title = "Update failed";
-                err.errors = ["The adress provided already exists."];
-                return next(err);
-            } else {
-                await business.save();
-            }
-        } else {
-            res.json({ message: "There was a problem. Please try again." });
-        }
+            await business.save();
+        } else res.json({ message: "There was a problem. Please try again." });
     })
 );
 

@@ -10,6 +10,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import BusinessMain from "./components/BusinessMain";
 import BusinessDetail from "./components/BusinessDetail";
 import NewBusinessForm from "./components/NewBusinessForm";
+import EditBusinessForm from "./components/EditBusinessForm";
 
 function App() {
     const dispatch = useDispatch();
@@ -34,6 +35,9 @@ function App() {
                     </Route>
                     <Route exact path="/business/new">
                         <NewBusinessForm />
+                    </Route>
+                    <Route exact path="/business/edit/:businessId">
+                        <EditBusinessForm />
                     </Route>
                     <Route exact path="/business/:businessId">
                         <BusinessDetail />

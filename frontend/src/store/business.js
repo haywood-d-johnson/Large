@@ -63,7 +63,6 @@ export const createBusiness = business => async dispatch => {
             return true;
         }
     } catch (error) {
-        console.log("In catch", error);
         return false;
     }
 };

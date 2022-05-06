@@ -34,7 +34,7 @@ const BusinessDetail = () => {
                 </div>
             </div>
             <div className="business-detail_option_buttons">
-                <NavLink to={"#"}>
+                <NavLink to="/business/edit">
                     <button className="business-detail_edit-button">
                         Edit this business
                     </button>
