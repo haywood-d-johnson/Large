@@ -46,14 +46,29 @@ router.post(
             lat: 0,
             lng: 0,
         };
-        const business = await Business.create(newBusiness);
+        let business = null;
+        const check = await Business.findOne({
+            where: {
+                address: req.body.address,
+            },
+        });
 
-        if (!business) {
-            const err = new Error("Sign Up failed");
+        if (check) {
+            const err = new Error("Update failed");
             err.status = 401;
-            err.title = "Failed";
-            err.errors = ["This business already exists. Please try again"];
+            err.title = "Update failed";
+            err.errors = ["The adress provided already exists."];
             return next(err);
+        } else {
+            business = await Business.create(newBusiness);
+
+            if (!business) {
+                const err = new Error("Sign Up failed");
+                err.status = 401;
+                err.title = "Failed";
+                err.errors = ["There was a problem. Please try again."];
+                return next(err);
+            }
         }
 
         return res.json({
@@ -62,36 +77,40 @@ router.post(
     })
 );
 
-router.patch("/:id(\\d+)", businessValidator, async (req, res, next) => {
-    const id = parseInt(req.params.id, 10);
-    const business = await Business.findByPk(id);
+router.patch(
+    "/:id(\\d+)",
+    businessValidator,
+    asyncHandler(async (req, res, next) => {
+        const id = parseInt(req.params.id, 10);
+        const business = await Business.findByPk(id);
 
-    if (business) {
-        business.description = req.body.description;
-        business.address = req.body.address;
-        business.city = req.body.city;
-        business.state = req.body.state;
-        business.zip = req.body.zip;
+        if (business) {
+            business.description = req.body.description;
+            business.address = req.body.address;
+            business.city = req.body.city;
+            business.state = req.body.state;
+            business.zip = req.body.zip;
 
-        // the only constant
-        const check = await Business.findOne({
-            where: {
-                address: req.body.address,
-            },
-        });
-        if (check) {
-            const err = new Error("Update failed");
-            err.status = 401;
-            err.title = "Update failed";
-            err.errors = ["The adress provided already exists."];
-            return next(err);
+            // the only constant
+            const check = await Business.findOne({
+                where: {
+                    address: req.body.address,
+                },
+            });
+            if (check) {
+                const err = new Error("Update failed");
+                err.status = 401;
+                err.title = "Update failed";
+                err.errors = ["The adress provided already exists."];
+                return next(err);
+            } else {
+                await business.save();
+            }
         } else {
-            await business.save();
+            res.json({ message: "There was a problem. Please try again." });
         }
-    } else {
-        res.json({ message: "There was a problem. Please try again." });
-    }
-});
+    })
+);
 
 router.delete("/:id(\\d+)", async (req, res) => {
     const id = parseInt(req.params.id, 10);

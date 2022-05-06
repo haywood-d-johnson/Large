@@ -11,7 +11,7 @@ import "./BusinessDetail.css";
 const BusinessDetail = () => {
     const dispatch = useDispatch();
     const { businessId } = useParams();
-
+    console.log(businessId);
     const business = useSelector(state => {
         return state.business.list;
     });
@@ -29,15 +29,22 @@ const BusinessDetail = () => {
             <div className="business-detail_description">{description}</div>
             <div className="business-detail_location">
                 <div className="business-detail_address">{address}</div>
-                <div className="business-detail_csz">
+                <div className="">
                     {city}, {state}, {zip}
                 </div>
             </div>
-            <NavLink key={id} to={"#"}>
-                <button className="business-detail_review-button">
-                    Add a review
-                </button>
-            </NavLink>
+            <div className="business-detail_option_buttons">
+                <NavLink to={"#"}>
+                    <button className="business-detail_edit-button">
+                        Edit this business
+                    </button>
+                </NavLink>
+                <NavLink to={"#"}>
+                    <button className="business-detail_review-button">
+                        Add a review
+                    </button>
+                </NavLink>
+            </div>
         </div>
     );
 };
