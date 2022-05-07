@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const EditBusinessForm = ({ business }) => {
-    return <div>test</div>;
+    return <div>{business.title}</div>;
 };
 
 export default EditBusinessForm;
