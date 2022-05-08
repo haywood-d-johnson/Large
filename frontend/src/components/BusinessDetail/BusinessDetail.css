@@ -21,11 +21,11 @@
     cursor: grab;
 }
 
-.business-detail_review-button {
+.business-detail_delete-button {
     margin-left: 0.5rem;
 }
 
-.business-detail_review-button:hover,
+.business-detail_delete-button:hover,
 .business-detail_edit-button:hover {
     color: white;
     background-color: var(--midnight);
