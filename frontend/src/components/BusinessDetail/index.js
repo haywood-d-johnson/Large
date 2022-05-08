@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -6,15 +6,54 @@ import { NavLink } from "react-router-dom";
 
 import { getOneBusiness } from "../../store/business";
 
+import EditBusinessForm from "../EditBusinessForm";
+
 import "./BusinessDetail.css";
 
 const BusinessDetail = () => {
+    const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
+
     const { businessId } = useParams();
-    console.log(businessId);
+
     const business = useSelector(state => {
         return state.business.list;
     });
+
+    const [showEditMenu, setShowEditMenu] = useState(false);
+    const [showDeleteMenu, setShowDeleteMenu] = useState(false);
+
+    // did multiple. Not clean, but separation of concerns
+    //editMenu
+    const openEditMenu = () => {
+        if (showEditMenu) return;
+        setShowEditMenu(true);
+    };
+    useEffect(() => {
+        if (!showEditMenu) return;
+        const closeMenu = () => {
+            setShowEditMenu(false);
+        };
+
+        document.addEventListener("click", closeMenu);
+
+        return () => document.removeEventListener("click", closeMenu);
+    }, [showEditMenu]);
+
+    const openDeleteMenu = () => {
+        if (showDeleteMenu) return;
+        setShowDeleteMenu(true);
+    };
+    useEffect(() => {
+        if (!showDeleteMenu) return;
+        const closeMenu = () => {
+            setShowEditMenu(false);
+        };
+
+        document.addEventListener("click", closeMenu);
+
+        return () => document.removeEventListener("click", closeMenu);
+    }, [showDeleteMenu]);
 
     useEffect(() => {
         dispatch(getOneBusiness(businessId));
@@ -33,18 +72,30 @@ const BusinessDetail = () => {
                     {city}, {state}, {zip}
                 </div>
             </div>
-            <div className="business-detail_option_buttons">
-                <NavLink to="/business/edit">
-                    <button className="business-detail_edit-button">
+            <NavLink to={"#"}>
+                <button className="business-detail_review-button">
+                    Add a review
+                </button>
+            </NavLink>
+            {user.id !== undefined && business[id].userId === user.id && (
+                <div className="business-detail_option_buttons">
+                    <button
+                        className="business-detail_edit-button"
+                        onClick={openEditMenu}
+                    >
                         Edit this business
                     </button>
-                </NavLink>
-                <NavLink to={"#"}>
-                    <button className="business-detail_review-button">
-                        Add a review
+                    <button
+                        className="business-detail_delete-button"
+                        onClick={openDeleteMenu}
+                    >
+                        Delete This Business
                     </button>
-                </NavLink>
-            </div>
+                </div>
+            )}
+            {showEditMenu && (
+                <EditBusinessForm business={business} businessId={businessId} />
+            )}
         </div>
     );
 };

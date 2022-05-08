@@ -39,7 +39,7 @@ function App() {
                     <Route exact path="/business/edit/:businessId">
                         <EditBusinessForm />
                     </Route>
-                    <Route exact path="/business/:businessId">
+                    <Route path="/business/:businessId">
                         <BusinessDetail />
                     </Route>
                 </Switch>
