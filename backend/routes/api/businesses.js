@@ -104,7 +104,7 @@ router.delete("/:id(\\d+)", async (req, res) => {
     if (business) {
         await business.destroy();
     } else {
-        errors.push("Not found");
+        errors.push("Business not found");
     }
 });
 

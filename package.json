@@ -10,8 +10,7 @@
         "dev:frontend": "npm install --prefix frontend start",
         "sequelize": "npm run --prefix backend sequelize",
         "sequelize-cli": "npm run --prefix backend sequelize-cli",
-        "start": "npm start --prefix backend",
-        "herokuMigrate": "heroku run npm run sequelize db:migrate && heroku run npm run sequelize db:seed:all"
+        "start": "npm start --prefix backend"
     },
     "repository": {
         "type": "git",

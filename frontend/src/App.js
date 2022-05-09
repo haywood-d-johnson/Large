@@ -11,6 +11,7 @@ import BusinessMain from "./components/BusinessMain";
 import BusinessDetail from "./components/BusinessDetail";
 import NewBusinessForm from "./components/NewBusinessForm";
 import EditBusinessForm from "./components/EditBusinessForm";
+import DeleteBusiness from "./components/DeleteBusiness";
 
 function App() {
     const dispatch = useDispatch();
@@ -38,6 +39,9 @@ function App() {
                     </Route>
                     <Route exact path="/business/edit/:businessId">
                         <EditBusinessForm />
+                    </Route>
+                    <Route path="/business/delete/:businessId">
+                        <DeleteBusiness />
                     </Route>
                     <Route path="/business/:businessId">
                         <BusinessDetail />

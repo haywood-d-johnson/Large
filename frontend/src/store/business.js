@@ -95,6 +95,17 @@ export const editBusiness = business => async dispatch => {
     }
 };
 
+export const deleteBusiness = business => async dispatch => {
+    const res = await csrfFetch(`/api/business/${business.id}`, {
+        method: "DELETE",
+    });
+    if (res.ok) {
+        dispatch(removeBusiness(business.id));
+    } else {
+        return false;
+    }
+};
+
 const businessReducer = (state = initialState, action) => {
     let setState;
     switch (action.type) {

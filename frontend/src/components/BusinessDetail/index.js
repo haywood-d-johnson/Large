@@ -29,7 +29,7 @@ const BusinessDetail = () => {
                 <div className="business-detail_address">
                     {business?.address}
                 </div>
-                <div className="">
+                <div className="business-detail_location">
                     {business?.city}, {business?.state}, {business?.zip}
                 </div>
             </div>
@@ -46,6 +46,14 @@ const BusinessDetail = () => {
                     >
                         <button className="business-detail_edit-button">
                             Edit this business
+                        </button>
+                    </NavLink>
+                    <NavLink
+                        key={business.title}
+                        to={`/business/delete/${business.id}`}
+                    >
+                        <button className="business-detail_edit-button">
+                            Delete this business
                         </button>
                     </NavLink>
                 </div>

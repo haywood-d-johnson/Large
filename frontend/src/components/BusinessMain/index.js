@@ -10,6 +10,8 @@ const BusinessMain = () => {
 
     const [bus, setBus] = useState(business);
 
+    const sortedBusiness = business.sort((a, b) => (a.id < b.id ? -1 : 1));
+
     useEffect(() => {
         dispatch(getAllBusinesses());
     }, [bus, dispatch]);
@@ -17,7 +19,7 @@ const BusinessMain = () => {
     return (
         <>
             {business &&
-                business.map(b => {
+                sortedBusiness.map(b => {
                     return (
                         <>
                             <BusinessContainer key={b?.title} business={b} />
