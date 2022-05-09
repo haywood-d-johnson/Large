@@ -1,19 +1,78 @@
 import { useState, useEffect } from "react";
+import { NavLink, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { Redirect } from "react-router-dom";
 
-const EditBusinessForm = ({ business, businessId }) => {
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [address, setAddress] = useState("");
-    const [city, setCity] = useState("");
-    const [state, setState] = useState("");
-    const [zip, setZip] = useState("");
-    // form has valid information
+import { useHistory } from "react-router-dom";
+
+import { getOneBusiness } from "../../store/business";
+
+import { editBusiness } from "../../store/business";
+
+const EditBusinessForm = () => {
+    const dispatch = useDispatch();
+    const { businessId } = useParams();
+
+    const business = useSelector(state => state.business[businessId]);
+    const history = useHistory();
+    // const [businessInfo, setBusinessInfo] = useState({
+    //     title: "",
+    //     description: "",
+    //     address: "",
+    //     city: "",
+    //     state: "",
+    //     zip: "",
+    // });
+
+    const [title, setTitle] = useState(business?.title);
+    const [description, setDescription] = useState(business?.description);
+    const [address, setAddress] = useState(business?.address);
+    const [city, setCity] = useState(business?.city);
+    const [state, setState] = useState(business?.state);
+    const [zip, setZip] = useState(business?.zip);
+    // // form has valid information
     const [ok, setOk] = useState(false);
     const [errors, setErrors] = useState([]);
 
-    // const { id, title, description, address, city, state, zip } =
-    //     business[businessId - 1];
-    const handleSubmit = () => {};
+    useEffect(() => {
+        dispatch(getOneBusiness(businessId));
+        console.log("ran");
+    }, [businessId, dispatch, errors, ok]);
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+
+        dispatch(
+            editBusiness({
+                id: business.id,
+                title,
+                description,
+                address,
+                city,
+                state,
+                zip,
+            })
+        )
+            .then(() => {
+                setOk(true);
+                if (errors.length === 0 && ok) return <Redirect to="/" />;
+            })
+            .catch(async res => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+                setOk(false);
+            });
+
+        // if (!res) {
+        //     setErrors(["There was a problem. Please try again."]);
+        //     setOk(false);
+        // } else {
+        //     setOk(true);
+        //     reset();
+        //     history.push("/");
+        // }
+    };
+
     return (
         <form className="business-new_form-container" onSubmit={handleSubmit}>
             <ul>
@@ -21,24 +80,24 @@ const EditBusinessForm = ({ business, businessId }) => {
                     <li key={i}>{err}</li>
                 ))}
             </ul>
-            <label className="business-new_form-title">
-                Title:
-                <input
-                    type="text"
-                    value={title}
-                    onChange={e => setTitle(e.target.value)}
-                    required
-                />
-            </label>
-            <label className="business-new_form-description">
-                Description:
-                <input
-                    type="text"
-                    value={description}
-                    onChange={e => setDescription(e.target.value)}
-                    required
-                />
-            </label>
+            <>
+                <label className="business-new_form-title">
+                    Title:
+                    <input
+                        value={title}
+                        onChange={e => setTitle(e.target.value)}
+                        required
+                    />
+                </label>
+            </>
+
+            <div className="business-new_form-description">Description:</div>
+            <textarea
+                type="text"
+                value={description}
+                onChange={e => setDescription(e.target.value)}
+                required
+            />
             <label className="business-new_form-address">
                 Address:
                 <input
@@ -75,7 +134,14 @@ const EditBusinessForm = ({ business, businessId }) => {
                     required
                 />
             </label>
-            <button type="submit">Register this business</button>
+
+            <button className="edit-form_submit-button" type="submit">
+                Update this business
+            </button>
+
+            <NavLink to={"/"}>
+                <button className="edit-form_cancel-button">Cancel</button>
+            </NavLink>
         </form>
     );
 };

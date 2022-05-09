@@ -68,26 +68,30 @@ export const createBusiness = business => async dispatch => {
 };
 
 export const editBusiness = business => async dispatch => {
-    const { userId, title, description, address, city, state, zip } = business;
-    const res = await csrfFetch("/api/business", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            userId,
-            title,
-            description,
-            address,
-            city,
-            state,
-            zip,
-        }),
-    });
-    if (res.ok) {
-        const data = await res.json();
-        dispatch(setBusiness(data.business));
-        return res;
-    } else {
-        console.error(res);
+    const { title, description, address, city, state, zip } = business;
+
+    try {
+        const res = await csrfFetch(`/api/business/${business.id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                title,
+                description,
+                address,
+                city,
+                state,
+                zip,
+            }),
+        });
+        console.log(title, description, address, city, state, zip);
+        if (res.ok) {
+            const data = await res.json();
+            dispatch(setBusiness(data.business));
+
+            return true;
+        }
+    } catch (error) {
+        return false;
     }
 };
 
