@@ -78,24 +78,24 @@ router.post(
     })
 );
 
-router.patch(
-    "/:id(\\d+)",
-    businessValidator,
-    asyncHandler(async (req, res, next) => {
-        const id = parseInt(req.params.id, 10);
+router.patch("/:id(\\d+)", businessValidator, async (req, res, next) => {
+    const id = parseInt(req.params.id, 10);
+    try {
         const business = await Business.findByPk(id);
 
-        if (business) {
-            business.description = req.body.description;
-            business.address = req.body.address;
-            business.city = req.body.city;
-            business.state = req.body.state;
-            business.zip = req.body.zip;
+        business.description = req.body.description;
+        business.address = req.body.address;
+        business.city = req.body.city;
+        business.state = req.body.state;
+        business.zip = req.body.zip;
 
-            await business.save();
-        } else res.json({ message: "There was a problem. Please try again." });
-    })
-);
+        await business.save();
+
+        return true;
+    } catch (error) {
+        res.json({ message: "There was a problem. Please try again." });
+    }
+});
 
 router.delete("/:id(\\d+)", async (req, res) => {
     const id = parseInt(req.params.id, 10);
